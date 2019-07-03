@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HeartController : MonoBehaviour
 {
-
+    [SerializeField] ParticleSystem lightPS;
+    [SerializeField] ParticleSystem heartPS;
     void Init()
     {
 
@@ -22,6 +23,9 @@ public class HeartController : MonoBehaviour
         {
             Variables.getHeartNum++;
             Debug.Log(Variables.getHeartNum);
+            gameObject.SetActive(false);
+            lightPS.Play();
+            heartPS.Play();
         }
     }
 }
