@@ -14,10 +14,16 @@ public class GameManager : MonoBehaviour
         cam.Init();
     }
 
-    // Update is called once per frame
+    void FixedUpdate()
+    {
+        cat.FixedUpd();
+    }
+
     void Update()
     {
-        cat.Upd();
         cam.Upd();
+        cat.Upd();
     }
+
+
 }
