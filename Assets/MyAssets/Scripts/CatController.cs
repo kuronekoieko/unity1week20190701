@@ -28,16 +28,14 @@ public class CatController : MonoBehaviour
     {
         HorizontalController();
         JumpController();
-
     }
 
     void JumpController()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!IsGround()) { return; }
-            rb.velocity += new Vector3(0, 7, 0);
+            rb.velocity += new Vector3(0, Values.CAT_JUMP_SPEED, 0);
         }
     }
 
@@ -72,11 +70,7 @@ public class CatController : MonoBehaviour
         //                  ↓Ray  ↓Rayが当たったオブジェクト ↓距離
         if (Physics.Raycast(ray, out hit, distance))
         {
-            //Rayが当たったオブジェクトのtagがPlayerだったら
-            if (hit.collider)
-            {
-                Debug.Log("接地");
-            }
+            //Rayが当たったオブジェクトが存在するか
             return hit.collider;
         }
         return false;
