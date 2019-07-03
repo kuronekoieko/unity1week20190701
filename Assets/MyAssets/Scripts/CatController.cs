@@ -7,6 +7,7 @@ public class CatController : MonoBehaviour
     Rigidbody rb;
     public static CatController i;
     float keyX;
+    float centerX;
 
 
     public void Init()
@@ -14,6 +15,7 @@ public class CatController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         i = this;
         keyX = 0;
+        centerX = transform.position.x;
     }
 
 
@@ -22,6 +24,24 @@ public class CatController : MonoBehaviour
         float x = keyX * 6;
         rb.velocity = new Vector3(x, rb.velocity.y, Values.CAT_SPEED);
 
+        //左右の移動制限
+        HorizontalLimitter();
+
+
+
+    }
+
+    void HorizontalLimitter()
+    {
+        float offset = 3f;
+        float x = transform.position.x;
+        float y = transform.position.y;
+        float z = transform.position.z;
+        int sign = 0;
+        if (x > centerX + offset) { sign = 1; }
+        if (x < centerX - offset) { sign = -1; }
+        if (sign != 0) { x = centerX + sign * offset; }
+        transform.position = new Vector3(x, y, z);
     }
 
     public void Upd()
@@ -30,7 +50,7 @@ public class CatController : MonoBehaviour
         JumpController();
     }
 
-    
+
 
     void JumpController()
     {

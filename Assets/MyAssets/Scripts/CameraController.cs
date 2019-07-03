@@ -15,6 +15,13 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     public void Upd()
     {
-        transform.position = CatController.i.transform.position - vec;
+        float x = (CatController.i.transform.position - vec).x;
+
+        float y = transform.position.y;
+
+        float z = (CatController.i.transform.position - vec).z;
+
+
+        transform.position = new Vector3(x, y, z);
     }
 }
