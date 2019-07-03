@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Variables
 {
-
+    public static int getHeartNum;
 }

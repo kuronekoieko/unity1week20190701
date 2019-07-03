@@ -16,12 +16,12 @@ public class CatController : MonoBehaviour
         keyX = 0;
     }
 
-    // Update is called once per frame
+
     public void FixedUpd()
     {
         float x = keyX * 6;
         rb.velocity = new Vector3(x, rb.velocity.y, Values.CAT_SPEED);
-        //Debug.Log(rb.velocity);
+
     }
 
     public void Upd()
@@ -29,6 +29,8 @@ public class CatController : MonoBehaviour
         HorizontalController();
         JumpController();
     }
+
+    
 
     void JumpController()
     {
