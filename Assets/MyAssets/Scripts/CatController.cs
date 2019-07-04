@@ -21,7 +21,7 @@ public class CatController : MonoBehaviour
 
     public void FixedUpd()
     {
-        float x = keyX * 6;
+        float x = keyX * 4;
         rb.velocity = new Vector3(x, rb.velocity.y, Values.CAT_SPEED);
 
         //左右の移動制限
@@ -72,6 +72,8 @@ public class CatController : MonoBehaviour
         {
             keyX = -1;
         }
+
+        keyX = Input.GetAxis("Horizontal");
     }
 
     bool IsGround()

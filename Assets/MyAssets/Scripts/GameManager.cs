@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     [SerializeField] CatController cat;
     [SerializeField] CameraController cam;
-    // Start is called before the first frame update
+    [SerializeField] Text hearNumText;
+
+
+
     void Start()
     {
         cat.Init();
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         cam.Upd();
         cat.Upd();
+        hearNumText.text = Variables.getHeartNum.ToString();
     }
 
 
