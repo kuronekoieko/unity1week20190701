@@ -8,11 +8,12 @@ public class CatController : MonoBehaviour
     public static CatController i;
     float keyX;
     float centerX;
-
+    Animator animator;
 
     public void Init()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         i = this;
         keyX = 0;
         centerX = transform.position.x;
@@ -48,6 +49,9 @@ public class CatController : MonoBehaviour
     {
         HorizontalController();
         JumpController();
+
+        animator.speed = !IsGround() ? 0.1f : 1;
+
     }
 
 
