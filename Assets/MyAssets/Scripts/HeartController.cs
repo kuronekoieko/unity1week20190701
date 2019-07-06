@@ -22,7 +22,6 @@ public class HeartController : MonoBehaviour
         if (cat)
         {
             Variables.getHeartNum++;
-            Debug.Log(Variables.getHeartNum);
             gameObject.SetActive(false);
             lightPS.Play();
             heartPS.Play();

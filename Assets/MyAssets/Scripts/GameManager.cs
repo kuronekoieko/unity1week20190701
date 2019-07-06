@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] CatController cat;
     [SerializeField] CameraController cam;
     [SerializeField] Text hearNumText;
-    [SerializeField] EnemyController enemy;
+    [SerializeField] EnemyManager enemyManager;
 
     void Start()
     {
         cat.Init();
         cam.Init();
-        enemy.Init();
+        enemyManager.Init();
     }
 
     void FixedUpdate()
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         cam.Upd();
         cat.Upd();
-        enemy.Upd();
+        enemyManager.Upd();
         hearNumText.text = Variables.getHeartNum.ToString();
     }
 

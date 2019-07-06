@@ -22,13 +22,11 @@ public class CatController : MonoBehaviour
 
     public void FixedUpd()
     {
-        float x = keyX * 4;
+        float x = keyX * 2;
         rb.velocity = new Vector3(x, rb.velocity.y, Values.CAT_SPEED);
 
         //左右の移動制限
         HorizontalLimitter();
-
-
 
     }
 
@@ -51,6 +49,16 @@ public class CatController : MonoBehaviour
         JumpController();
 
         animator.speed = !IsGround() ? 0.1f : 1;
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        var enemy = other.gameObject.GetComponent<EnemyController>();
+        // Debug.Log(enemy);
+        if (!enemy) { return; }
+        //  animator.SetTrigger("Damage");
 
     }
 

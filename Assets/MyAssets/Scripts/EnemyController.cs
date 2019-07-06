@@ -7,9 +7,12 @@ public class EnemyController : MonoBehaviour
 {
     float timer;
     bool isFinishedMove;
+    float dz;
+    public int initdirection;
     public void Init()
     {
         isFinishedMove = true;
+        dz = 5 * Mathf.Sign(initdirection);
     }
 
     public void Upd()
@@ -18,13 +21,14 @@ public class EnemyController : MonoBehaviour
         if (!isFinishedMove) { return; }
         isFinishedMove = false;
         transform.DOMoveX(
-                   transform.position.x + 5,  //移動後の座標
+                   transform.position.x + dz,  //移動後の座標
                    1.0f       //時間
                    ).OnComplete(() =>
                    {
                        isFinishedMove = true;
+                       dz *= -1;
                    });
-        Debug.Log("aaaaaa");
+
     }
 
 
