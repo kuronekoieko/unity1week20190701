@@ -47,7 +47,7 @@ public class CatController : MonoBehaviour
     {
         HorizontalController();
         JumpController();
-
+        animator.SetTrigger("Run");
         animator.speed = !IsGround() ? 0.1f : 1;
 
     }
