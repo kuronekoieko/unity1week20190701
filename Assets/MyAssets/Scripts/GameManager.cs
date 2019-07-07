@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public static GameManager i;
     float countDownNum;
     [NonSerialized] public GameState gameState;
-    [SerializeField] RectTransform result;
+    [SerializeField] Animator resultAnim;
 
     void Start()
     {
@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
         cam.Init();
         enemyManager.Init();
         countDownNum = 5f;
-        result.gameObject.SetActive(false);
         Variables.getHeartNum = 0;
         gameState = GameState.WAITING;
     }
@@ -78,7 +77,7 @@ public class GameManager : MonoBehaviour
             case GameState.RESULT:
                 cat.UpdateResultState();
                 cam.UpdateResultState();
-                result.gameObject.SetActive(true);
+                resultAnim.SetTrigger("FadeIn");
                 spaceDownText.gameObject.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {

@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
     }
     public void UpdateResultState()
     {
-        if (timeCount > 1f)
+        if (timeCount > 0.5f)
         {
             EnableBlur(true);
             return;
