@@ -17,15 +17,15 @@ public class ResultManager : MonoBehaviour
     public void SetResultRank()
     {
         string rank = "D";
-        if (Variables.getHeartNum > 100)
+        if (Variables.getHeartNum > 80)
         {
             rank = "S";
         }
-        else if (Variables.getHeartNum > 90)
+        else if (Variables.getHeartNum > 70)
         {
             rank = "A";
         }
-        else if (Variables.getHeartNum > 70)
+        else if (Variables.getHeartNum > 60)
         {
             rank = "B";
         }

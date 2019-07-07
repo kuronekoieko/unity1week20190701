@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     bool isFinishedMove;
     float dz;
     public int initdirection;
+    public EnemyType enemyType;
+
     public void Init()
     {
         isFinishedMove = true;
@@ -18,22 +20,30 @@ public class EnemyController : MonoBehaviour
     public void Upd()
     {
 
-        if (!isFinishedMove) { return; }
-        isFinishedMove = false;
-        transform.DOMoveX(
-                   transform.position.x + dz,  //移動後の座標
-                   1.0f       //時間
-                   ).OnComplete(() =>
-                   {
-                       isFinishedMove = true;
-                       dz *= -1;
-                   });
+        switch (enemyType)
+        {
+            case EnemyType.MOVING:
+                if (!isFinishedMove) { return; }
+                isFinishedMove = false;
+                transform.DOMoveX(
+                           transform.position.x + dz,  //移動後の座標
+                           1.0f       //時間
+                           ).OnComplete(() =>
+                           {
+                               isFinishedMove = true;
+                               dz *= -1;
+                           });
+                break;
+            case EnemyType.WALL:
+                break;
+
+            default:
+                break;
+        }
+
+
 
     }
 
 
-    public void FixedUpd()
-    {
-
-    }
 }

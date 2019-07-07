@@ -65,7 +65,8 @@ public class CatController : MonoBehaviour
         // Debug.Log(enemy);
         if (enemy)
         {
-            //  animator.SetTrigger("Damage");
+            Variables.getHeartNum -= 5;
+            AudioManager.i.PlayOneShot(5);
         }
 
         var goal = other.gameObject.GetComponent<GoalController>();
