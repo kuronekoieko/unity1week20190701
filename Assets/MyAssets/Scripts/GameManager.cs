@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] EnemyManager enemyManager;
     [SerializeField] Text countDownText;
     [SerializeField] Text spaceDownText;
+    [SerializeField] RectTransform header;
     public static GameManager i;
     float countDownNum;
     [NonSerialized] public GameState gameState;
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
                 cam.UpdateResultState();
                 result.FadeInAnim();
                 result.SetResultRank();
+                header.gameObject.SetActive(false);
                 break;
             default:
                 break;
