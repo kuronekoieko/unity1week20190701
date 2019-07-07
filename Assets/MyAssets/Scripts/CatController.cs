@@ -20,7 +20,7 @@ public class CatController : MonoBehaviour
     }
 
 
-    public void FixedUpd()
+    public void FixedUpdatePlayState()
     {
         float x = keyX * 2;
         rb.velocity = new Vector3(x, rb.velocity.y, Values.CAT_SPEED);
@@ -29,6 +29,7 @@ public class CatController : MonoBehaviour
         HorizontalLimitter();
 
     }
+
 
     void HorizontalLimitter()
     {
@@ -43,13 +44,18 @@ public class CatController : MonoBehaviour
         transform.position = new Vector3(x, y, z);
     }
 
-    public void Upd()
+    public void UpdatePlayState()
     {
         HorizontalController();
         JumpController();
         animator.SetTrigger("Run");
         animator.speed = !IsGround() ? 0.1f : 1.5f;
+    }
 
+    public void UpdateResultState()
+    {
+        rb.velocity = Vector3.zero;
+        animator.speed = 1.5f;
     }
 
     void OnTriggerEnter(Collider other)
@@ -57,9 +63,18 @@ public class CatController : MonoBehaviour
 
         var enemy = other.gameObject.GetComponent<EnemyController>();
         // Debug.Log(enemy);
-        if (!enemy) { return; }
-        //  animator.SetTrigger("Damage");
+        if (enemy)
+        {
+            //  animator.SetTrigger("Damage");
+        }
 
+        var goal = other.gameObject.GetComponent<GoalController>();
+        if (goal)
+        {
+            animator.ResetTrigger("Run");
+            animator.SetTrigger("Idle");
+            GameManager.i.gameState = GameState.RESULT;
+        }
     }
 
 

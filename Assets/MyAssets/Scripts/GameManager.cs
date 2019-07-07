@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,11 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] EnemyManager enemyManager;
     [SerializeField] Text countDownText;
     [SerializeField] Text spaceDownText;
+    public static GameManager i;
     float countDownNum;
-    GameState gameState;
+    [NonSerialized] public GameState gameState;
 
     void Start()
     {
+        i = this;
         cat.Init();
         cam.Init();
         enemyManager.Init();
@@ -25,7 +28,6 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-
         switch (gameState)
         {
             case GameState.WAITING:
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
 
                 break;
             case GameState.PLAY:
-                cat.FixedUpd();
+                cat.FixedUpdatePlayState();
                 break;
             case GameState.RESULT:
 
@@ -63,12 +65,12 @@ public class GameManager : MonoBehaviour
                 CountDown();
                 break;
             case GameState.PLAY:
-                cam.Upd();
-                cat.Upd();
+                cam.UpdatePlayState();
+                cat.UpdatePlayState();
                 enemyManager.Upd();
                 break;
             case GameState.RESULT:
-
+                cat.UpdateResultState();
                 break;
 
             default:

@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Upd()
+    public void UpdatePlayState()
     {
         float x = (CatController.i.transform.position - vec).x;
         float y = transform.position.y;
