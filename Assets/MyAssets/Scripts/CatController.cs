@@ -85,6 +85,7 @@ public class CatController : MonoBehaviour
         {
             if (!IsGround()) { return; }
             rb.velocity += new Vector3(0, Values.CAT_JUMP_SPEED, 0);
+            AudioManager.i.PlayOneShot(2);
         }
     }
 

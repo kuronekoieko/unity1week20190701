@@ -37,7 +37,7 @@ public class ResultManager : MonoBehaviour
         {
             rank = "D";
         }
-
+        Variables.rank = rank;
         rankText.text = "RANK : " + rank;
         heartNumText.text = Variables.getHeartNum.ToString();
     }
@@ -50,6 +50,7 @@ public class ResultManager : MonoBehaviour
     void ScaleUpAnimEvent()
     {
         animator.SetTrigger("ScaleUp");
+        AudioManager.i.PlayOneShot(3);
     }
 
 }

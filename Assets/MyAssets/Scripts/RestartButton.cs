@@ -8,5 +8,6 @@ public class RestartButton : MonoBehaviour
     public void OnClick()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        AudioManager.i.PlayOneShot(0);
     }
 }

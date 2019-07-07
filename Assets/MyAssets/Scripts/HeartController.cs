@@ -25,6 +25,7 @@ public class HeartController : MonoBehaviour
             gameObject.SetActive(false);
             lightPS.Play();
             heartPS.Play();
+            AudioManager.i.PlayOneShot(4);
         }
     }
 }

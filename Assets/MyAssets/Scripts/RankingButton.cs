@@ -8,5 +8,6 @@ public class RankingButton : MonoBehaviour
     {
         // Type == Number の場合
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking(Variables.getHeartNum);
+        AudioManager.i.PlayOneShot(0);
     }
 }

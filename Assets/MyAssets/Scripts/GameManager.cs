@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text countDownText;
     [SerializeField] Text spaceDownText;
     [SerializeField] RectTransform header;
+    [SerializeField] AudioManager audioManager;
     public static GameManager i;
     float countDownNum;
+    float oldCountDownNum;
     [NonSerialized] public GameState gameState;
     [SerializeField] ResultManager result;
 
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         countDownNum = 5f;
         Variables.getHeartNum = 0;
         gameState = GameState.WAITING;
+        audioManager.Init();
     }
 
     void FixedUpdate()
@@ -61,6 +64,7 @@ public class GameManager : MonoBehaviour
             case GameState.WAITING:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    audioManager.PlayOneShot(0);
                     spaceDownText.gameObject.SetActive(false);
                     gameState = GameState.COUNT_DOWN;
                     cam.EnableBlur(false);
@@ -94,11 +98,16 @@ public class GameManager : MonoBehaviour
         countDownNum -= Time.deltaTime;
         float num = Mathf.Ceil(countDownNum);
         countDownText.text = num.ToString("F0");
+        if (num == 3 && oldCountDownNum == 4)
+        {
+            audioManager.PlayOneShot(1);
+        }
         if (num == 0)
         {
             countDownText.gameObject.SetActive(false);
             gameState = GameState.PLAY;
         }
+        oldCountDownNum = num;
     }
 
 

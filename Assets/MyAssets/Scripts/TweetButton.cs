@@ -7,8 +7,8 @@ public class TweetButton : MonoBehaviour
 {
     public void OnClick()
     {
-        string tweetText = "" + "\n\n#つながるﾈｺﾁｬﾝ\n#unity1week\n";
-        naichilab.UnityRoomTweet.Tweet("tunagaru_nekochan", tweetText);
-
+        string tweetText = "ハート数：" + Variables.getHeartNum + " ランク：" + Variables.rank + "\n\n#あつめるﾈｺﾁｬﾝ\n#unity1week\n";
+        naichilab.UnityRoomTweet.Tweet("atumeru_nekochan", tweetText);
+        AudioManager.i.PlayOneShot(0);
     }
 }
