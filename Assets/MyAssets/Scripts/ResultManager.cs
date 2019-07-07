@@ -7,6 +7,7 @@ public class ResultManager : MonoBehaviour
 {
     Animator animator;
     [SerializeField] Text rankText;
+    [SerializeField] Text heartNumText;
 
     public void Init()
     {
@@ -38,6 +39,7 @@ public class ResultManager : MonoBehaviour
         }
 
         rankText.text = "RANK : " + rank;
+        heartNumText.text = Variables.getHeartNum.ToString();
     }
 
     public void FadeInAnim()
