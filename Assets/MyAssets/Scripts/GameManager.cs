@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +16,7 @@ public class GameManager : MonoBehaviour
     public static GameManager i;
     float countDownNum;
     [NonSerialized] public GameState gameState;
-    [SerializeField] Animator resultAnim;
+    [SerializeField] ResultManager result;
 
     void Start()
     {
@@ -25,6 +24,7 @@ public class GameManager : MonoBehaviour
         cat.Init();
         cam.Init();
         enemyManager.Init();
+        result.Init();
         countDownNum = 5f;
         Variables.getHeartNum = 0;
         gameState = GameState.WAITING;
@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.WAITING:
-
                 break;
             case GameState.COUNT_DOWN:
 
@@ -77,12 +76,7 @@ public class GameManager : MonoBehaviour
             case GameState.RESULT:
                 cat.UpdateResultState();
                 cam.UpdateResultState();
-                resultAnim.SetTrigger("FadeIn");
-                spaceDownText.gameObject.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                }
+                result.FadeInAnim();
                 break;
             default:
                 break;
