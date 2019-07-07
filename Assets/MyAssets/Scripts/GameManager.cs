@@ -77,12 +77,15 @@ public class GameManager : MonoBehaviour
                 cat.UpdateResultState();
                 cam.UpdateResultState();
                 result.FadeInAnim();
+                result.SetResultRank();
                 break;
             default:
                 break;
         }
 
     }
+
+
 
     void CountDown()
     {
