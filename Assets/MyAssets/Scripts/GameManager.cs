@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public static GameManager i;
     float countDownNum;
     [NonSerialized] public GameState gameState;
+    [SerializeField] RectTransform result;
 
     void Start()
     {
@@ -24,6 +26,9 @@ public class GameManager : MonoBehaviour
         cam.Init();
         enemyManager.Init();
         countDownNum = 5f;
+        result.gameObject.SetActive(false);
+        Variables.getHeartNum = 0;
+        gameState = GameState.WAITING;
     }
 
     void FixedUpdate()
@@ -59,6 +64,7 @@ public class GameManager : MonoBehaviour
                 {
                     spaceDownText.gameObject.SetActive(false);
                     gameState = GameState.COUNT_DOWN;
+                    cam.EnableBlur(false);
                 }
                 break;
             case GameState.COUNT_DOWN:
@@ -71,8 +77,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.RESULT:
                 cat.UpdateResultState();
+                cam.UpdateResultState();
+                result.gameObject.SetActive(true);
+                spaceDownText.gameObject.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
                 break;
-
             default:
                 break;
         }
